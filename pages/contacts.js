@@ -1,4 +1,4 @@
-import allContacts from './datasources/allcontacts'
+import allContacts from '../datasources/allcontacts'
 import Link from 'next/link'
 
 export default function allContactsFun () {
