@@ -4,10 +4,19 @@ import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link'
 import Layout from '@/components/Layout'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
+  const router = useRouter();
+  const [postId, setPostId] = useState();
+  const handleOnChange = (e) => setPostId(e.target.value)
+  const handleOnSubmit = (e) => {
+    e.preventDefault();
+    router.push(`./post/${postId}`)
+  }
   return (
     <>
       <Layout>
@@ -52,7 +61,11 @@ export default function Home() {
               priority
             />
           </div>
-
+          <div>
+            <form onSubmit={handleOnSubmit}>
+              <input type="text" name="name" onChange={handleOnChange}/>
+            </form>
+          </div>
           <div className={styles.grid}>
             <Link
               href='./contacts'
