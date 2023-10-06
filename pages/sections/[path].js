@@ -1,9 +1,11 @@
-import allContacts from '../datasources/allcontacts'
+import allcontacts from '@/datasources/allcontacts';
 import Link from 'next/link'
 import Layout from '@/components/Layout'
+import { useRouter } from 'next/router';
 
 export default function allContactsFun({ apiResults }) {
     console.log('here to display contacts', apiResults);
+    const router = useRouter();
     return (
         <Layout>
             <br />
@@ -19,6 +21,9 @@ export default function allContactsFun({ apiResults }) {
                     )
                 })
             }
+            <button type="button" onClick={() => router.back()}>
+                Click here to go back
+            </button>
         </Layout>
     )
 }

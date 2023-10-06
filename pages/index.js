@@ -84,7 +84,7 @@ export default function Home() {
               listOfStaticOptions.map(element => {
                 return (
                   <Link
-                    href={element.path}
+                    href={'/sections'+element.path}
                     className={styles.card}
                     rel="noopener noreferrer"
                   >
