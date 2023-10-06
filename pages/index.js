@@ -17,6 +17,19 @@ export default function Home() {
     e.preventDefault();
     router.push(`./post/${postId}`)
   }
+
+  let listOfStaticOptions = [
+    {
+      path: '/contacts',
+      title: 'Contacts',
+      desc: 'Click here to navigate to the new Sample Path for Contacts'
+    },
+    {
+      path: '/sample-option',
+      title: 'Sample Option',
+      desc: 'Click here to navigate to the new Sample Path for Sample-Options'
+    }
+  ]
   return (
     <>
       <Layout>
@@ -63,22 +76,28 @@ export default function Home() {
           </div>
           <div>
             <form onSubmit={handleOnSubmit}>
-              <input type="text" name="name" onChange={handleOnChange}/>
+              <input type="text" name="name" onChange={handleOnChange} />
             </form>
           </div>
           <div className={styles.grid}>
-            <Link
-              href='./contacts'
-              className={styles.card}
-              rel="noopener noreferrer"
-            >
-              <h2>
-                Contacts <span>-&gt;</span>
-              </h2>
-              <p>
-                Click here to navigate to the new Contacts page
-              </p>
-            </Link>
+            {
+              listOfStaticOptions.map(element => {
+                return (
+                  <Link
+                    href={element.path}
+                    className={styles.card}
+                    rel="noopener noreferrer"
+                  >
+                    <h2>
+                      {element.title} <span>-&gt;</span>
+                    </h2>
+                    <p>
+                      {element.desc}
+                    </p>
+                  </Link>
+                )
+              })
+            }
           </div>
         </main>
       </Layout>
