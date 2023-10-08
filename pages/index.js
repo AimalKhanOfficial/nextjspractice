@@ -121,15 +121,18 @@ export default function Home() {
               })
             }
           </div>
-          <div>
+          <div className="container">
             <form onSubmit={(e) => e.preventDefault()}>
-              <label>Username: </label>
-              <input type='text' onChange={handleUsernameChange} />
-              <br />
-              <label>Password: </label>
-              <input type='password' onChange={handlePasswordChange} />
-              <br />
-              <button onClick={attemptloginUser}>Login</button>
+              <div className="form-outline mb-4">
+                <input type="text" id="form2Example1" className="form-control" onChange={handleUsernameChange}/>
+                <label className="form-label" for="form2Example1">Username</label>
+              </div>
+
+              <div className="form-outline mb-4">
+                <input type="password" id="form2Example2" className="form-control" onChange={handlePasswordChange} />
+                <label className="form-label" for="form2Example2">Password</label>
+              </div>
+              <button className='btn btn-primary btn-block mb-4' onClick={attemptloginUser}>Login</button>
             </form>
           </div>
         </main>
