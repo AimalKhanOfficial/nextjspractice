@@ -2,9 +2,9 @@ import allcontacts from '@/datasources/allcontacts';
 import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { useRouter } from 'next/router';
+import styles from '@/styles/Sections.Path.module.css'
 
 export default function allContactsFun({ apiResults }) {
-    console.log('here to display contacts', apiResults);
     const router = useRouter();
     return (
         <Layout>
@@ -13,7 +13,7 @@ export default function allContactsFun({ apiResults }) {
                 apiResults?.map(element => {
                     return (
                         <Link href={'./contactDetails/' + element.id}>
-                            <p>
+                            <p className={styles.redPs}>
                                 <b>{element.name} </b>
                                 ({element.email})
                             </p>
@@ -46,7 +46,6 @@ export async function getStaticProps({ params }) {
             email: 'Sample EMAIL from NO API CALL'
         }
     ];
-    console.log('lets check the param.path', params.path);
     switch (params.path) {
         case 'contacts':
             const apiResponse = await fetch('https://jsonplaceholder.typicode.com/users');

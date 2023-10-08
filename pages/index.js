@@ -125,12 +125,12 @@ export default function Home() {
             <form onSubmit={(e) => e.preventDefault()}>
               <div className="form-outline mb-4">
                 <input type="text" id="form2Example1" className="form-control" onChange={handleUsernameChange}/>
-                <label className="form-label" for="form2Example1">Username</label>
+                <label className="form-label" htmlFor="form2Example1">Username</label>
               </div>
 
               <div className="form-outline mb-4">
                 <input type="password" id="form2Example2" className="form-control" onChange={handlePasswordChange} />
-                <label className="form-label" for="form2Example2">Password</label>
+                <label className="form-label" htmlFor="form2Example2">Password</label>
               </div>
               <button className='btn btn-primary btn-block mb-4' onClick={attemptloginUser}>Login</button>
             </form>
