@@ -6,17 +6,36 @@ import Link from 'next/link'
 import Layout from '@/components/Layout'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
+import { isUserValid } from './api/utilities'
 
 const inter = Inter({ subsets: ['latin'] })
 
 export default function Home() {
   const router = useRouter();
   const [postId, setPostId] = useState();
+  const [username, setusername] = useState();
+  const [password, setPassword] = useState();
+  const [loginErrPopup, setLoginErrPopup] = useState('none');
+
   const handleOnChange = (e) => setPostId(e.target.value)
   const handleOnSubmit = (e) => {
     e.preventDefault();
     router.push(`./post/${postId}`)
   }
+
+  const attemptloginUser = (e) => {
+    e.preventDefault();
+    if (isUserValid(username, password)) {
+      setLoginErrPopup('none');
+      router.push('sections/contacts');
+    }
+    else {
+      setLoginErrPopup('block');
+    }
+  }
+
+  const handleUsernameChange = (e) => setusername(e.target.value)
+  const handlePasswordChange = (e) => setPassword(e.target.value)
 
   let listOfStaticOptions = [
     {
@@ -62,6 +81,9 @@ export default function Home() {
                 />
               </a>
             </div>
+            <div style={{ display: 'blank', color: '#FFFFFF', backgroundColor: '#FF0000', float: 'right', display: loginErrPopup }}>
+              <p>Invalid Username or password</p>
+            </div>
           </div>
 
           <div className={styles.center}>
@@ -84,7 +106,7 @@ export default function Home() {
               listOfStaticOptions.map(element => {
                 return (
                   <Link
-                    href={'/sections'+element.path}
+                    href={'/sections' + element.path}
                     className={styles.card}
                     rel="noopener noreferrer"
                   >
@@ -98,6 +120,17 @@ export default function Home() {
                 )
               })
             }
+          </div>
+          <div>
+            <form onSubmit={(e) => e.preventDefault()}>
+              <label>Username: </label>
+              <input type='text' onChange={handleUsernameChange} />
+              <br />
+              <label>Password: </label>
+              <input type='password' onChange={handlePasswordChange} />
+              <br />
+              <button onClick={attemptloginUser}>Login</button>
+            </form>
           </div>
         </main>
       </Layout>
